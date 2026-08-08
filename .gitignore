@@ -1,0 +1,10 @@
+# 编译产物
+*.exe
+*.out
+*.o
+
+# 工具目录
+.reasonix/
+
+# 误建的空文件
+algprithm
