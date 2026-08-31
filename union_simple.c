@@ -7,12 +7,12 @@ typedef struct {
     int length;
 } SqList;
 
-// 初始化线性表
+// 初始化
 void InitList(SqList *L) {
     L->length = 0;
 }
 
-// 查找 e 在 L 中的位置（1-based），不存在返回 0
+
 int LocateElem(SqList L, int e) {
     for (int i = 0; i < L.length; i++)
         if (L.data[i] == e)
@@ -20,7 +20,7 @@ int LocateElem(SqList L, int e) {
     return 0;
 }
 
-// 在表尾插入 e
+
 int ListInsert(SqList *L, int e) {
     if (L->length >= MAX_SIZE)
         return 0;
@@ -28,14 +28,14 @@ int ListInsert(SqList *L, int e) {
     return 1;
 }
 
-// 并集：将 Lb 中 La 没有的元素插入 La（La = La ∪ Lb）
+
 void unionList(SqList *La, SqList Lb) {
     for (int i = 0; i < Lb.length; i++)
         if (!LocateElem(*La, Lb.data[i]))
             ListInsert(La, Lb.data[i]);
 }
 
-// 打印线性表
+// 打印
 void PrintList(SqList L, char *name) {
     printf("%s = (", name);
     for (int i = 0; i < L.length; i++)
@@ -50,15 +50,20 @@ int main() {
 
     InitList(&La);
     InitList(&Lb);
-    for (int i = 0; i < 4; i++) ListInsert(&La, arr_a[i]);
-    for (int i = 0; i < 7; i++) ListInsert(&Lb, arr_b[i]);
+    
+    for (int i = 0; i < 4; i++) 
+        ListInsert(&La, arr_a[i]);
 
+    for (int i = 0; i < 7; i++) 
+        ListInsert(&Lb, arr_b[i]);
+
+    printf("--- 合并前 ---\n");
     PrintList(La, "La");
     PrintList(Lb, "Lb");
 
     unionList(&La, Lb);
 
-    printf("--- 并集后 ---\n");
+    printf("\n--- 合并后 (La = La U Lb) ---\n");
     PrintList(La, "La");
     return 0;
 }
